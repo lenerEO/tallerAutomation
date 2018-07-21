@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'org.hablemosdetesting.taller.automation'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
+    compile group: 'info.cukes', name: 'cucumber-java', version: '1.2.5'
+    compile group: 'info.cukes', name: 'cucumber-testng', version: '1.2.5'
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+}
