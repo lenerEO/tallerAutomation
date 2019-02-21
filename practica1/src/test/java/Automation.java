@@ -7,17 +7,17 @@ import org.testng.annotations.Test;
 public class Automation {
 
     @Test
-    public void Search() throws InterruptedException {
-        WebDriver browser = new ChromeDriver();
-        browser.get("http://automationpractice.com/index.php");
+    public void testSearch() throws InterruptedException {
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://automationpractice.com/index.php");
 
-        WebElement txtSearch = browser.findElement(By.cssSelector("input#search_query_top"));
+        WebElement txtSearch = driver.findElement(By.cssSelector("input#search_query_top"));
         txtSearch.sendKeys("blouse");
-
-        WebElement btnSearch = browser.findElement(By.cssSelector("button[name='submit_search']"));
+        
+        WebElement btnSearch = driver.findElement(By.cssSelector("button[name='submit_search']"));
         btnSearch.click();
 
         Thread.sleep(3000);
-        browser.quit();
+        driver.quit();
     }
 }

@@ -9,28 +9,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    public ProductsPage(WebDriver browser){
-        driver = browser;
-        PageFactory.initElements(driver, this);
+    //Constructor
+    public ProductsPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
+        wait = new WebDriverWait(this.driver, 20);
     }
 
-    @FindBy(css = "div.content_price.col-xs-5.col-md-12 span[itemprop='price']")
+    //Locators
+    @FindBy(css = "i.icon-th-list")
+    private WebElement btnList;
+
+    @FindBy(css="div.content_price.col-xs-5.col-md-12 span[itemprop='price']")
     private WebElement lblPrice;
 
-    @FindBy(css = "p.alert.alert-warning")
-    private WebElement lblMensaje;
-
-    public String getPrice(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(lblPrice));
-        return lblPrice.getText();
+    //Actions
+    public void clickList() {
+        wait.until(ExpectedConditions.visibilityOf(btnList)).click();
     }
 
-    public String getMensaje(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(lblMensaje));
-        return lblMensaje.getText();
+    public String getPrice() {
+        return wait.until(ExpectedConditions.visibilityOf(lblPrice)).getText().trim();
     }
 }

@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.hablemosdetesting.taller.automation'
+group 'net.avantica'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8

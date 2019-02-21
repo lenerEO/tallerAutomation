@@ -9,37 +9,29 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SearchPage {
 
-    WebDriver driver;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    public SearchPage(WebDriver browser){
-        driver = browser;
-        PageFactory.initElements(driver, this);
+    //Constructor
+    public SearchPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(this.driver, this);
+        wait = new WebDriverWait(this.driver, 20);
     }
+    //Locators
 
-    @FindBy(css = "input#search_query_top")
+    @FindBy(id="search_query_top")
     private WebElement txtSearch;
 
-    @FindBy(css = "button[name='submit_search']")
+    @FindBy(css = "button.btn.btn-default.button-search")
     private WebElement btnSearch;
 
-    @FindBy(css = "i.icon-th-list")
-    private WebElement btnListView;
+    //Actions
 
-    public void writeText(String term){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(txtSearch));
-        txtSearch.sendKeys(term);
+    public void setSearch(String term) {
+        wait.until(ExpectedConditions.visibilityOf(txtSearch)).sendKeys(term);
     }
-
-    public void clickSearch(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(btnSearch));
-        btnSearch.click();
-    }
-
-    public void clickList(){
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(btnListView));
-        btnListView.click();
+    public void clickSearch() {
+        wait.until(ExpectedConditions.visibilityOf(btnSearch)).click();
     }
 }
